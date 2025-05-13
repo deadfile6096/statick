@@ -1,0 +1,41 @@
+[
+    {
+        "name": "Dogwifhat",
+        "symbol": "WIF",
+        "chainId": "solana",
+        "tokenAddress": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+        "description": "Just a dog wearing a hat. The Solana memecoin that took the world by storm.",
+        "icon": "https://assets.coingecko.com/coins/images/33258/large/wif.png?1701923232",
+        "header": "https://i.imgur.com/Y2Fqh4G.jpeg",
+        "links": [
+            {"type": "website", "url": "https://www.dogwifcoin.org/"},
+            {"type": "twitter", "url": "https://twitter.com/dogwifcoin"}
+        ]
+    },
+    {
+        "name": "Bonk",
+        "symbol": "BONK",
+        "chainId": "solana",
+        "tokenAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        "description": "BONK is the first Solana dog coin for the people, by the people.",
+        "icon": "https://assets.coingecko.com/coins/images/28600/large/bonk.jpg?1672304290",
+        "header": "https://i.imgur.com/JGhfZHE.jpeg",
+        "links": [
+            {"type": "website", "url": "https://bonkcoin.com/"},
+            {"type": "twitter", "url": "https://twitter.com/bonk_inu"}
+        ]
+    },
+    {
+        "name": "Popcat",
+        "symbol": "POPCAT",
+        "chainId": "solana",
+        "tokenAddress": "P0PCATrQfUQAUYXgE6JkqFDWPPWJm1tJsLcQKbfKWGG",
+        "description": "The Solana cat meme token inspired by the viral Popcat meme.",
+        "icon": "https://assets.coingecko.com/coins/images/33971/large/popcat.png?1703841761",
+        "header": "https://i.imgur.com/ZdcBSLk.jpeg",
+        "links": [
+            {"type": "website", "url": "https://www.popcatcoin.com/"},
+            {"type": "twitter", "url": "https://twitter.com/popcatsolana"}
+        ]
+    }
+]

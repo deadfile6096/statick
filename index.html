@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Meminder - Swipe Crypto</title>
+    <!-- Фавиконы -->
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#FE3C72">
+    <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#FE3C72">
+    <!-- Стили -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #424242;
+            --primary-color: #FE3C72; /* Tinder red */
+            --secondary-color: #FF7854; /* Tinder gradient orange */
+            --success-color: #24cf5f; /* Green for positive changes */
+            --danger-color: #FE3C72; /* Red for negative changes - same as primary */
+        }
+        
+        html, body {
+            font-family: 'Inter', 'Intern', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body.dark-theme {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e6e6e6;
+            --tab-bg: #2a2a2a;
+            --tab-text: #ffffff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-img {
+            height: 60px;
+            margin-left: 2px;
+            vertical-align: middle;
+        }
+        
+        .logo-name {
+            height: 70px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        
+        /* Стили для темной темы */
+        
+        .theme-toggle {
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--primary-color);
+            position: absolute;
+            right: 0;
+        }
+        
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            width: 100%;
+            padding-bottom: 5px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 25px;
+            margin: 0 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        body.dark-theme .tab {
+            background-color: var(--tab-bg);
+            color: var(--tab-text);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab:hover {
+            background-color: rgba(254, 60, 114, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(254, 60, 114, 0.2);
+        }
+        
+        body.dark-theme .tab:hover {
+            background-color: rgba(254, 60, 114, 0.2);
+            box-shadow: 0 4px 8px rgba(254, 60, 114, 0.3);
+        }
+        
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(254, 60, 114, 0.3);
+        }
+        
+        body.dark-theme .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(254, 60, 114, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 580px;
+            margin: 0 auto;
+            perspective: 1000px;
+            box-sizing: border-box;
+        }
+        
+        .token-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s, opacity 0.5s;
+            border-radius: 20px; /* Более закругленные углы как в Tinder */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background-color: var(--card-bg);
+            overflow: hidden;
+            box-sizing: border-box;
+            touch-action: pan-y;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .token-card.hidden {
+            display: none;
+        }
+        
+        .token-card.swiped-left {
+            transform: translateX(-200%) rotate(-10deg);
+            opacity: 0;
+        }
+        
+        .token-card.swiped-right {
+            transform: translateX(200%) rotate(10deg);
+            opacity: 0;
+        }
+        
+        .token-header {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .token-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+        }
+        
+        .token-icon {
+            position: absolute;
+            bottom: -35px;
+            left: 25px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+        
+        .token-icon img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .token-content {
+            padding: 40px 25px 25px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        .token-symbol {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .token-chain {
+            font-size: 14px;
+            background-color: rgba(74, 108, 247, 0.1);
+            color: var(--primary-color);
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .token-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .token-metrics > div {
+            background-color: rgba(0, 0, 0, 0.03);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+        
+        .token-boost {
+            grid-column: span 2;
+            background-color: rgba(74, 108, 247, 0.1) !important;
+            color: var(--primary-color);
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .token-description {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            max-height: 75px; /* Уменьшаем максимальную высоту */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Ограничиваем до 3 строк */
+            line-clamp: 3; /* Ограничиваем до 3 строк */
+            -webkit-box-orient: vertical;
+        }
+        
+        .token-links {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .token-link {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .token-link:hover {
+            transform: scale(1.1);
+        }
+        
+        .tinder-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 30px;
+        }
+        
+        .tinder-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tinder-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .skip-button {
+            background-color: #fff;
+            color: var(--danger-color);
+            border: 2px solid var(--danger-color);
+            font-size: 22px;
+        }
+        
+        .skip-button:hover {
+            background-color: var(--danger-color);
+            color: #fff;
+        }
+        
+        .like-button {
+            background-color: #fff;
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
+            font-size: 22px;
+        }
+        
+        .like-button:hover {
+            background-color: var(--success-color);
+            color: #fff;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .loading i {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .error {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: var(--danger-color);
+        }
+        
+        .price-up {
+            color: var(--success-color);
+        }
+        
+        .price-down {
+            color: var(--danger-color);
+        }
+        
+        .no-more-cards {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .no-more-cards h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .no-more-cards button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .no-more-cards button:hover {
+            background-color: #3a57d7;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                max-width: 90%;
+                height: 520px;
+            }
+            
+            .token-header {
+                height: 180px;
+            }
+            
+            .tinder-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        /* Стили для модального окна */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            overflow: hidden;
+            box-sizing: border-box;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            padding: 20px;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close {
+            cursor: pointer;
+            font-size: 20px;
+            color: #888;
+            transition: color 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            color: var(--primary-color);
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(254, 60, 114, 0.3);
+        }
+        
+        .copyright {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        body.dark-theme .modal-header,
+        body.dark-theme .modal-footer {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Адаптивные стили для различных устройств */
+        
+        /* Большие настольные мониторы */
+        @media (min-width: 1921px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            .card-container {
+                max-width: 550px;
+                height: 680px;
+            }
+            
+            .token-header {
+                height: 280px;
+            }
+            
+            .token-icon {
+                width: 90px;
+                height: 90px;
+                bottom: -45px;
+            }
+            
+            .token-icon img {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .token-content {
+                padding: 50px 30px 30px;
+            }
+            
+            .token-symbol {
+                font-size: 32px;
+            }
+            
+            .token-description {
+                font-size: 16px;
+                max-height: 120px;
+            }
+        }
+        
+        /* Настольные компьютеры и ноутбуки */
+        @media (min-width: 1201px) and (max-width: 1920px) {
+            .card-container {
+                max-width: 500px;
+                height: 620px;
+            }
+            
+            .token-header {
+                height: 260px;
+            }
+        }
+        
+        /* Планшеты в ландшафтном режиме и маленькие ноутбуки */
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .card-container {
+                max-width: 480px;
+                height: 600px;
+            }
+            
+            .token-header {
+                height: 220px;
+            }
+        }
+        
+        /* Планшеты в портретном режиме */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .container {
+                padding: 12px;
+            }
+            
+            .card-container {
+                max-width: 90%;
+                height: 580px;
+            }
+            
+            .token-header {
+                height: 200px;
+            }
+            
+            .token-content {
+                padding: 40px 22px 22px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 15px;
+            }
+        }
+        
+        /* Большие мобильные устройства */
+        @media (min-width: 481px) and (max-width: 767px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card-container {
+                max-width: 92%;
+                height: 550px;
+            }
+            
+            .token-header {
+                height: 180px;
+            }
+            
+            .token-content {
+                padding: 38px 20px 20px;
+            }
+            
+            .token-metrics {
+                gap: 12px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .logo-img {
+                height: 50px;
+            }
+            
+            .logo-name {
+                height: 70px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .tab {
+                padding: 8px 18px;
+                margin: 4px;
+                font-size: 14px;
+            }
+            
+            .info-modal {
+                width: 90%;
+            }
+        }
+        
+        /* Маленькие мобильные устройства */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card-container {
+                max-width: 95%;
+                height: 500px;
+            }
+            
+            .token-header {
+                height: 160px;
+            }
+            
+            .token-content {
+                padding: 35px 20px 20px;
+            }
+            
+            .token-metrics {
+                gap: 10px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .logo-img {
+                height: 45px;
+                margin-left: 2px;
+            }
+            
+            .logo-name {
+                height: 70px;
+                margin-right: 4px;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .tab {
+                padding: 8px 16px;
+                margin: 4px;
+                font-size: 14px;
+            }
+            
+            .info-modal {
+                width: 95%;
+            }
+            
+            .modal-logo {
+                font-size: 20px;
+            }
+            
+            .token-description {
+                font-size: 13px;
+                line-height: 1.4;
+                max-height: 60px;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                margin-bottom: 10px;
+            }
+            
+            .token-links {
+                margin-bottom: 5px;
+            }
+            
+            .token-symbol {
+                font-size: 22px;
+            }
+        }
+        
+        /* iPhone SE и очень маленькие экраны */
+        @media (max-width: 375px) {
+            .card-container {
+                height: 480px;
+            }
+            
+            .token-header {
+                height: 140px;
+            }
+            
+            .token-icon {
+                width: 60px;
+                height: 60px;
+                bottom: -30px;
+            }
+            
+            .token-icon img {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .token-content {
+                padding: 30px 15px 15px;
+            }
+            
+            .token-metrics {
+                gap: 8px;
+            }
+            
+            .token-metrics > div {
+                padding: 8px;
+                font-size: 13px;
+            }
+            
+            .metric-label {
+                font-size: 11px;
+            }
+            
+            .token-description {
+                font-size: 13px;
+                max-height: 70px;
+                -webkit-line-clamp: 3;
+                line-clamp: 3;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .logo-name {
+                height: 60px;
+            }
+        }
+        
+        /* Ориентация экрана */
+        @media (orientation: landscape) and (max-height: 600px) {
+            .card-container {
+                height: 85vh;
+            }
+            
+            .token-header {
+                height: 30vh;
+            }
+            
+            .token-description {
+                font-size: 12px;
+                line-height: 1.3;
+                max-height: 50px;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                margin-bottom: 8px;
+            }
+            
+            .token-links {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="info-modal" id="info-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-logo">
+                    <img src="img/CoinDer-name.png" alt="CoinDer" class="logo-name">
+                    <img src="img/Coin-logo.png" alt="CoinDer Logo" class="logo-img">
+                </div>
+                <div class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Discover and boost the latest crypto tokens with Meminder</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="social-link twitter-link" id="twitter-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <div class="copyright">© 2025 Meminder.fun</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="logo">
+                <img src="img/CoinDer-name.png" alt="CoinDer" class="logo-name">
+                <img src="img/Coin-logo.png" alt="CoinDer Logo" class="logo-img">
+            </div>
+            <div class="theme-toggle" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div>
+            <div class="twitter-toggle" id="twitter-toggle" style="cursor: pointer; font-size: 20px; color: var(--primary-color); position: absolute; right: 40px;">
+                <i class="fab fa-twitter"></i>
+            </div>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" data-endpoint="latest-profiles">Latest Profiles</div>
+            <div class="tab" data-endpoint="latest-boosts">Latest Boosts</div>
+            <div class="tab" data-endpoint="top-boosts">Top Boosts</div>
+        </div>
+        
+        <div id="card-container" class="card-container">
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Загрузка данных...</p>
+            </div>
+        </div>
+        
+        <div class="tinder-controls">
+            <button id="skip-button" class="tinder-button skip-button">
+                <i class="fas fa-times"></i>
+            </button>
+            <button id="like-button" class="tinder-button like-button">
+                <i class="fas fa-heart"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript -->
+    <script src="js/api-client.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardContainer = document.getElementById('card-container');
+            const tabs = document.querySelectorAll('.tab');
+            const themeToggle = document.getElementById('theme-toggle');
+            const skipButton = document.getElementById('skip-button');
+            const likeButton = document.getElementById('like-button');
+            
+            let currentTokens = [];
+            let currentTokenIndex = 0;
+            
+            // Загружаем данные при загрузке страницы
+            const activeTab = document.querySelector('.tab.active');
+            if (activeTab) {
+                loadData(activeTab.dataset.endpoint);
+            }
+            
+            // Обработчик клика по вкладкам
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    loadData(this.dataset.endpoint);
+                });
+            });
+            
+            // Загрузка сохраненной темы при загрузке страницы
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Переключение темы
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                if (document.body.classList.contains('dark-theme')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Модальное окно с информацией
+            const menuToggle = document.getElementById('menu-toggle');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const infoModal = document.getElementById('info-modal');
+            const modalClose = document.getElementById('modal-close');
+            // Модальное окно закрывается при клике на крестик
+            
+            // Открытие модального окна
+            menuToggle.addEventListener('click', function() {
+                modalOverlay.style.display = 'block';
+                infoModal.style.display = 'block';
+            });
+            
+            // Закрытие модального окна
+            modalClose.addEventListener('click', function() {
+                modalOverlay.style.display = 'none';
+                infoModal.style.display = 'none';
+            });
+            
+            // Закрытие модального окна при клике на оверлей
+            modalOverlay.addEventListener('click', function() {
+                modalOverlay.style.display = 'none';
+                infoModal.style.display = 'none';
+            });
+            
+            // Настройка ссылки на Twitter (X.com)
+            const twitterLink = document.getElementById('twitter-link');
+            twitterLink.href = 'https://x.com/meminder_sol'; // Ссылка на X.com (Twitter)
+            
+            // Обработчик клика на иконку Twitter в шапке
+            const twitterToggle = document.getElementById('twitter-toggle');
+            twitterToggle.addEventListener('click', function() {
+                window.open('https://x.com/meminder_sol', '_blank');
+            });
+            
+            // Обработчики для кнопок
+            skipButton.addEventListener('click', skipToken);
+            likeButton.addEventListener('click', likeToken);
+            
+            // Функция для загрузки данных
+            async function loadData(endpoint) {
+                cardContainer.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading data...</p>
+                    </div>
+                `;
+                
+                try {
+                    let data;
+                    
+                    if (endpoint === 'latest-profiles') {
+                        data = await DexScreenerAPI.getLatestProfiles();
+                    } else if (endpoint === 'latest-boosts') {
+                        data = await DexScreenerAPI.getLatestBoosts();
+                    } else if (endpoint === 'top-boosts') {
+                        data = await DexScreenerAPI.getTopBoosts();
+                    }
+                    
+                    if (!data || !Array.isArray(data) || data.length === 0) {
+                        cardContainer.innerHTML = `
+                            <div class="error">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p>No tokens found. Try another category.</p>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Сохраняем токены и показываем первый
+                    currentTokens = data;
+                    currentTokenIndex = 0;
+                    showCurrentToken();
+                    
+                } catch (error) {
+                    console.error('Error loading data:', error);
+                    cardContainer.innerHTML = `
+                        <div class="error">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <p>Error loading data. Please try again later.</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Функция для отображения текущего токена
+            function showCurrentToken() {
+                if (currentTokenIndex >= currentTokens.length) {
+                    // Если все токены просмотрены
+                    cardContainer.innerHTML = `
+                        <div class="no-more-cards">
+                            <h3>You've viewed all tokens</h3>
+                            <p>Choose another category or start over</p>
+                            <button id="restart-button">Start Over</button>
+                        </div>
+                    `;
+                    
+                    document.getElementById('restart-button').addEventListener('click', function() {
+                        currentTokenIndex = 0;
+                        showCurrentToken();
+                    });
+                    
+                    return;
+                }
+                
+                const token = currentTokens[currentTokenIndex];
+                const endpoint = document.querySelector('.tab.active').dataset.endpoint;
+                
+                cardContainer.innerHTML = createTokenCard(token, endpoint);
+                
+                // Загружаем дополнительные данные о токене
+                loadTokenData(token);
+            }
+            
+            // Функция для загрузки дополнительных данных о токене
+            async function loadTokenData(token) {
+                try {
+                    // Загружаем тестовые данные о ценах и метриках
+                    const tokenData = {
+                        price: Math.random() * 1000,
+                        price_change_24h: (Math.random() * 20) - 10, // От -10% до +10%
+                        market_cap: Math.random() * 1000000000,
+                        volume: Math.random() * 100000000
+                    };
+                    
+                    // Обновляем данные на карточке
+                    updateTokenCardData(tokenData);
+                } catch (error) {
+                    console.error('Error loading token data:', error);
+                }
+            }
+            
+            // Функция для обновления данных на карточке токена
+            function updateTokenCardData(tokenData) {
+                const card = document.querySelector('.token-card');
+                if (!card) return;
+                
+                // Обновляем цену
+                if (tokenData.price !== undefined) {
+                    const priceElement = card.querySelector('.token-price');
+                    if (priceElement) {
+                        try {
+                            const price = typeof tokenData.price === 'string' ? parseFloat(tokenData.price) : tokenData.price;
+                            let formattedPrice;
+                            
+                            if (price < 1e-8) {
+                                formattedPrice = price.toExponential(2);
+                            } else if (price < 0.01) {
+                                formattedPrice = price.toFixed(8);
+                            } else if (price < 1) {
+                                formattedPrice = price.toFixed(4);
+                            } else {
+                                formattedPrice = price.toFixed(2);
+                            }
+                            
+                            priceElement.innerHTML = `💰 $${formattedPrice}`;
+                        } catch (error) {
+                            console.error('Error formatting price:', error);
+                            priceElement.innerHTML = `💰 $${tokenData.price}`;
+                        }
+                    }
+                }
+                
+                // Обновляем изменение цены
+                if (tokenData.price_change_24h !== undefined) {
+                    const priceChangeElement = card.querySelector('.token-price-change');
+                    if (priceChangeElement) {
+                        try {
+                            const priceChange = parseFloat(tokenData.price_change_24h);
+                            const isPositive = priceChange >= 0;
+                            const className = isPositive ? 'price-up' : 'price-down';
+                            const formattedChange = Math.abs(priceChange).toFixed(2);
+                            
+                            if (formattedChange !== 'NaN') {
+                                priceChangeElement.innerHTML = `<span class="${className}">${isPositive ? '📈 +' : '📉 -'}${formattedChange}%</span>`;
+                            } else {
+                                priceChangeElement.innerHTML = `<span>N/A</span>`;
+                            }
+                        } catch (error) {
+                            console.error('Error formatting price change:', error);
+                            priceChangeElement.innerHTML = `<span>N/A</span>`;
+                        }
+                    }
+                }
+                
+                // Обновляем рыночную капитализацию
+                if (tokenData.market_cap !== undefined) {
+                    const mcapElement = card.querySelector('.token-mcap');
+                    if (mcapElement) {
+                        try {
+                            const formattedMcap = formatNumber(tokenData.market_cap);
+                            mcapElement.innerHTML = `📊 $${formattedMcap}`;
+                        } catch (error) {
+                            console.error('Error formatting market cap:', error);
+                            mcapElement.innerHTML = `📊 $${tokenData.market_cap}`;
+                        }
+                    }
+                }
+                
+                // Обновляем объем
+                if (tokenData.volume !== undefined) {
+                    const volumeElement = card.querySelector('.token-volume');
+                    if (volumeElement) {
+                        try {
+                            const formattedVolume = formatNumber(tokenData.volume);
+                            volumeElement.innerHTML = `💹 $${formattedVolume}`;
+                        } catch (error) {
+                            console.error('Error formatting volume:', error);
+                            volumeElement.innerHTML = `💹 $${tokenData.volume}`;
+                        }
+                    }
+                }
+            }
+            
+            // Функция для создания карточки токена
+            function createTokenCard(token, endpoint) {
+                // Базовая информация о токене
+                const symbol = token.symbol || '';
+                const chainId = token.chainId || '';
+                const description = token.description || 'No description available.';
+                const icon = token.icon || 'https://via.placeholder.com/60';
+                const header = token.header || 'https://via.placeholder.com/300x150';
+                const tokenAddress = token.tokenAddress || '';
+                
+                // Формирование названия блокчейна
+                let chainName = chainId;
+                const chainMapping = {
+                    'ethereum': 'Ethereum',
+                    'eth': 'Ethereum',
+                    'bsc': 'Binance Smart Chain',
+                    'binance smart chain': 'Binance Smart Chain',
+                    'polygon': 'Polygon',
+                    'solana': 'Solana',
+                    'sol': 'Solana',
+                    'arbitrum': 'Arbitrum',
+                    'avalanche': 'Avalanche',
+                    'base': 'Base',
+                    'optimism': 'Optimism'
+                };
+                
+                if (chainMapping[chainId.toLowerCase()]) {
+                    chainName = chainMapping[chainId.toLowerCase()];
+                }
+                
+                // Формирование ссылок
+                let linksHtml = '';
+                if (token.links && Array.isArray(token.links)) {
+                    linksHtml = token.links.map(link => {
+                        let icon = 'fas fa-link';
+                        if (link.type === 'website' || link.type === 'web') icon = 'fas fa-globe';
+                        if (link.type === 'twitter') icon = 'fab fa-twitter';
+                        if (link.type === 'telegram') icon = 'fab fa-telegram-plane';
+                        if (link.type === 'discord') icon = 'fab fa-discord';
+                        if (link.type === 'github') icon = 'fab fa-github';
+                        
+                        return `<a href="${link.url}" target="_blank" class="token-link"><i class="${icon}"></i></a>`;
+                    }).join('');
+                }
+                
+                // Формирование блока с бустом (если есть)
+                let boostHtml = '';
+                if (endpoint.includes('boost') && token.boost) {
+                    boostHtml = `<div class="token-boost"><span class="metric-label">Boost</span> ${token.boost}x 🚀</div>`;
+                }
+                
+                // Создаем HTML карточки токена
+                return `
+                    <div class="token-card" data-address="${tokenAddress}" data-chain="${chainId}">
+                        <div class="token-header" style="background-image: url('${header}')">
+                            <div class="token-header-overlay"></div>
+                            <div class="token-icon">
+                                <img src="${icon}" alt="${symbol}">
+                            </div>
+                        </div>
+                        <div class="token-content">
+                            <div class="token-symbol">${symbol}</div>
+                            <div class="token-chain">${chainName}</div>
+                            
+                            <div class="token-metrics">
+                                <div class="token-price-container">
+                                    <div class="metric-label">Price</div>
+                                    <div class="token-price">💰 <i class="fas fa-spinner fa-spin"></i></div>
+                                </div>
+                                <div class="token-price-change-container">
+                                    <div class="metric-label">24h Change</div>
+                                    <div class="token-price-change"><i class="fas fa-spinner fa-spin"></i></div>
+                                </div>
+                                <div class="token-mcap-container">
+                                    <div class="metric-label">Market Cap</div>
+                                    <div class="token-mcap">📊 <i class="fas fa-spinner fa-spin"></i></div>
+                                </div>
+                                <div class="token-volume-container">
+                                    <div class="metric-label">Volume</div>
+                                    <div class="token-volume">💹 <i class="fas fa-spinner fa-spin"></i></div>
+                                </div>
+                                ${boostHtml}
+                            </div>
+                            
+                            <div class="token-description">${description}</div>
+                            
+                            <div class="token-links">
+                                ${linksHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Функция для пропуска текущего токена
+            function skipToken() {
+                const card = document.querySelector('.token-card');
+                if (!card) return;
+                
+                card.classList.add('swiped-left');
+                
+                setTimeout(() => {
+                    currentTokenIndex++;
+                    showCurrentToken();
+                }, 300);
+            }
+            
+            // Функция для лайка текущего токена
+            function likeToken() {
+                const card = document.querySelector('.token-card');
+                if (!card) return;
+                
+                card.classList.add('swiped-right');
+                
+                // Получаем данные о токене
+                const tokenAddress = card.dataset.address;
+                const chainId = card.dataset.chain;
+                
+                // Формируем URL для перехода на DexScreener
+                let dexScreenerUrl;
+                if (tokenAddress && chainId) {
+                    dexScreenerUrl = `https://dexscreener.com/search?q=${tokenAddress}`;
+                    
+                    // Открываем ссылку в новой вкладке
+                    window.open(dexScreenerUrl, '_blank');
+                }
+                
+                setTimeout(() => {
+                    currentTokenIndex++;
+                    showCurrentToken();
+                }, 300);
+            }
+            
+            // Функция для форматирования чисел
+            function formatNumber(number) {
+                if (number === null || number === undefined) return 'N/A';
+                
+                try {
+                    const num = parseFloat(number);
+                    if (isNaN(num)) return 'N/A';
+                    
+                    if (num >= 1e9) {
+                        return (num / 1e9).toFixed(2) + 'B';
+                    } else if (num >= 1e6) {
+                        return (num / 1e6).toFixed(2) + 'M';
+                    } else if (num >= 1e3) {
+                        return (num / 1e3).toFixed(2) + 'K';
+                    } else {
+                        return num.toFixed(2);
+                    }
+                } catch (error) {
+                    console.error('Error formatting number:', error);
+                    return 'N/A';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

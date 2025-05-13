@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Pepe Coin",
+        "symbol": "PEPE",
+        "chainId": "ethereum",
+        "tokenAddress": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+        "description": "The most memeable memecoin in existence. The dogs have had their day, it's time for Pepe to take reign.",
+        "icon": "https://assets.coingecko.com/coins/images/29850/large/pepe-token.jpeg?1682922725",
+        "header": "https://i.imgur.com/8oC0Kqy.jpeg",
+        "boost": 125,
+        "links": [
+            {"type": "website", "url": "https://www.pepe.vip/"},
+            {"type": "twitter", "url": "https://twitter.com/pepecoineth"}
+        ]
+    },
+    {
+        "name": "Shiba Inu",
+        "symbol": "SHIB",
+        "chainId": "ethereum",
+        "tokenAddress": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce",
+        "description": "SHIB is an experiment in decentralized spontaneous community building.",
+        "icon": "https://assets.coingecko.com/coins/images/11939/large/shiba.png?1622619446",
+        "header": "https://i.imgur.com/JXYhxKv.jpeg",
+        "boost": 95,
+        "links": [
+            {"type": "website", "url": "https://shibatoken.com/"},
+            {"type": "twitter", "url": "https://twitter.com/shibtoken"}
+        ]
+    },
+    {
+        "name": "Floki",
+        "symbol": "FLOKI",
+        "chainId": "ethereum",
+        "tokenAddress": "0xcf0c122c6b73ff809c693db761e7baebe62b6a2e",
+        "description": "FLOKI is the people's cryptocurrency and utility token of the Floki Ecosystem.",
+        "icon": "https://assets.coingecko.com/coins/images/16746/large/PNG_image.png?1643184642",
+        "header": "https://i.imgur.com/KvuqFg9.jpeg",
+        "boost": 87,
+        "links": [
+            {"type": "website", "url": "https://floki.com/"},
+            {"type": "twitter", "url": "https://twitter.com/RealFlokiInu"}
+        ]
+    }
+]

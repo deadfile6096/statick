@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "chainId": "bitcoin",
+        "tokenAddress": "bitcoin",
+        "description": "Bitcoin is the first successful internet money based on peer-to-peer technology.",
+        "icon": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+        "header": "https://i.imgur.com/KWEwxP2.jpeg",
+        "boost": 250,
+        "links": [
+            {"type": "website", "url": "https://bitcoin.org/"},
+            {"type": "twitter", "url": "https://twitter.com/bitcoin"}
+        ]
+    },
+    {
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "chainId": "ethereum",
+        "tokenAddress": "ethereum",
+        "description": "Ethereum is a global, open-source platform for decentralized applications.",
+        "icon": "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
+        "header": "https://i.imgur.com/2zB8Z6f.jpeg",
+        "boost": 200,
+        "links": [
+            {"type": "website", "url": "https://ethereum.org/"},
+            {"type": "twitter", "url": "https://twitter.com/ethereum"}
+        ]
+    },
+    {
+        "name": "Solana",
+        "symbol": "SOL",
+        "chainId": "solana",
+        "tokenAddress": "solana",
+        "description": "Solana is a high-performance blockchain supporting builders around the world creating crypto apps.",
+        "icon": "https://assets.coingecko.com/coins/images/4128/large/solana.png?1640133422",
+        "header": "https://i.imgur.com/8JUaYFj.jpeg",
+        "boost": 180,
+        "links": [
+            {"type": "website", "url": "https://solana.com/"},
+            {"type": "twitter", "url": "https://twitter.com/solana"}
+        ]
+    }
+]
